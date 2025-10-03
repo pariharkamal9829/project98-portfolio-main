@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light Mode - AWS Cloud DevOps Theme */
+    --background: 210 40% 98%;
+    --foreground: 210 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 15%;
+
+    --primary: 27 98% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 20% 45%;
+
+    --accent: 186 100% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 27 98% 54%;
+
+    --radius: 1rem;
+
+    /* AWS Cloud gradients */
+    --gradient-aws: linear-gradient(135deg, hsl(27 98% 54%) 0%, hsl(35 100% 60%) 50%, hsl(186 100% 42%) 100%);
+    --gradient-cloud: linear-gradient(180deg, hsl(205 100% 45%) 0%, hsl(186 100% 42%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsla(27 98% 54% / 0.15);
+    --shadow-glow: 0 0 30px hsla(27 98% 54% / 0.4);
+    --shadow-hover: 0 8px 40px hsla(27 98% 54% / 0.3);
+  }
+
+  .dark {
+    /* Dark Mode - AWS DevOps Dark Theme */
+    --background: 215 25% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 215 20% 14%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 215 20% 14%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 27 98% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 15% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 186 100% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 15% 22%;
+    --input: 215 15% 22%;
+    --ring: 27 98% 54%;
+
+    /* AWS Dark gradients */
+    --gradient-aws: linear-gradient(135deg, hsl(27 98% 54%) 0%, hsl(35 100% 60%) 50%, hsl(186 100% 42%) 100%);
+    --gradient-cloud: linear-gradient(180deg, hsl(205 100% 45%) 0%, hsl(186 100% 42%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 8px 30px hsla(27 98% 54% / 0.3);
+    --shadow-glow: 0 0 40px hsla(27 98% 54% / 0.6);
+    --shadow-hover: 0 12px 50px hsla(27 98% 54% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced theme transition effects */
+  * {
+    transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Scratch pattern for visual texture */
+  .scratch-pattern {
+    background-image: 
+      linear-gradient(45deg, transparent 48%, hsl(var(--primary) / 0.03) 48%, hsl(var(--primary) / 0.03) 52%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, hsl(var(--primary) / 0.03) 48%, hsl(var(--primary) / 0.03) 52%, transparent 52%);
+    background-size: 30px 30px;
+  }
+
+  /* Theme transition animation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.dark {
+    animation: theme-transition-dark 0.5s ease-in-out;
+  }
+
+  html.light {
+    animation: theme-transition-light 0.5s ease-in-out;
+  }
+
+  @keyframes theme-transition-dark {
+    0% {
+      filter: brightness(1) contrast(1);
+    }
+    50% {
+      filter: brightness(0.8) contrast(1.2);
+    }
+    100% {
+      filter: brightness(1) contrast(1);
+    }
+  }
+
+  @keyframes theme-transition-light {
+    0% {
+      filter: brightness(1) contrast(1);
+    }
+    50% {
+      filter: brightness(1.1) contrast(0.9);
+    }
+    100% {
+      filter: brightness(1) contrast(1);
+    }
+  }
+
+  /* Sparkle animation for theme transitions */
+  @keyframes sparkle-appear {
+    0% {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0) rotate(360deg);
+    }
+  }
+
+  /* Enhanced theme transition ripple */
+  @keyframes theme-ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Particle burst animation */
+  @keyframes particle-burst {
+    0% {
+      transform: scale(1) translate(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0) translate(150px, 150px);
+      opacity: 0;
+    }
+  }
+
+  /* Dock glass effect */
+  .dock-glass {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Enhanced dock icon hover effect */
+  .dock-icon-hover {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds */
+  .bg-gradient-aws {
+    background: var(--gradient-aws);
+  }
+
+  .bg-gradient-cloud {
+    background: var(--gradient-cloud);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .glow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px) rotate(-2deg); }
+    20%, 40%, 60%, 80% { transform: translateX(2px) rotate(2deg); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsla(var(--primary) / 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsla(var(--primary) / 0.8);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-ripple {
+    animation: ripple 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  .animate-slide-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  /* Text gradients */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+
+  /* Ripple effect container */
+  .ripple-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsla(var(--primary) / 0.4) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
