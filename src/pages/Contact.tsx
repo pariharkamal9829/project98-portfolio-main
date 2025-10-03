@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, MessageCircle, User, FileText, Github, Linkedin, Twitter, Instagram, Youtube, Globe, Calendar, ArrowRight, Users, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, MessageCircle, User, FileText, Github, Linkedin, Twitter, Instagram, Youtube, Globe, Calendar, ArrowRight, Users, ExternalLink, Star, Heart, Coffee, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import RippleEffect from '@/components/RippleEffect';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface ContactMethod {
   icon: React.ReactNode;
@@ -43,29 +45,38 @@ const Contact = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com",
-      color: "text-red-500",
-      hoverColor: "hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950",
-      description: "Send me an email anytime"
+      value: "kamal.parihar@example.com",
+      link: "mailto:kamal.parihar@example.com",
+      color: "text-blue-500",
+      hoverColor: "hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950",
+      description: "Send me an email anytime - I typically respond within 24 hours"
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+91 9876543210",
+      link: "tel:+919876543210",
       color: "text-green-500",
       hoverColor: "hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-950",
-      description: "Call me during business hours"
+      description: "Call me during IST business hours (9 AM - 6 PM)"
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      value: "San Francisco, CA",
-      link: "https://maps.google.com",
-      color: "text-blue-500",
-      hoverColor: "hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950",
-      description: "Available for local meetings"
+      value: "Pune, Maharashtra, India",
+      link: "https://maps.google.com/?q=Pune,Maharashtra,India",
+      color: "text-orange-500",
+      hoverColor: "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-950",
+      description: "Available for remote work and local meetings in Pune"
+    },
+    {
+      icon: <Calendar className="h-6 w-6" />,
+      title: "Schedule Meeting",
+      value: "Book a 30-min call",
+      link: "https://calendly.com/kamal-parihar",
+      color: "text-purple-500",
+      hoverColor: "hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-950",
+      description: "Schedule a consultation call to discuss your project"
     }
   ];
 
@@ -73,8 +84,8 @@ const Contact = () => {
     {
       icon: <Github className="h-6 w-6" />,
       name: "GitHub",
-      url: "https://github.com/yourusername",
-      username: "@yourusername",
+      url: "https://github.com/kamal-parihar",
+      username: "@kamal-parihar",
       color: "text-gray-900 dark:text-white",
       hoverColor: "hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900",
       followers: "1.2k"
@@ -82,8 +93,8 @@ const Contact = () => {
     {
       icon: <Linkedin className="h-6 w-6" />,
       name: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
-      username: "Your Name",
+      url: "https://linkedin.com/in/kamal-parihar",
+      username: "Kamal Parihar",
       color: "text-blue-600",
       hoverColor: "hover:bg-blue-600 hover:text-white",
       followers: "2.5k"
@@ -91,38 +102,38 @@ const Contact = () => {
     {
       icon: <Twitter className="h-6 w-6" />,
       name: "Twitter",
-      url: "https://twitter.com/yourusername",
-      username: "@yourusername",
+      url: "https://twitter.com/kamal_devops",
+      username: "@kamal_devops",
       color: "text-sky-500",
       hoverColor: "hover:bg-sky-500 hover:text-white",
       followers: "892"
     },
     {
-      icon: <Instagram className="h-6 w-6" />,
-      name: "Instagram",
-      url: "https://instagram.com/yourusername",
-      username: "@yourusername",
-      color: "text-pink-500",
-      hoverColor: "hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white",
-      followers: "643"
-    },
-    {
       icon: <Youtube className="h-6 w-6" />,
       name: "YouTube",
-      url: "https://youtube.com/@yourusername",
-      username: "@yourusername",
-      color: "text-red-600",
-      hoverColor: "hover:bg-red-600 hover:text-white",
-      followers: "1.8k"
+      url: "https://youtube.com/@kamaldevops",
+      username: "Kamal DevOps",
+      color: "text-red-500",
+      hoverColor: "hover:bg-red-500 hover:text-white",
+      followers: "5.4k"
     },
     {
       icon: <Globe className="h-6 w-6" />,
       name: "Portfolio",
-      url: "https://yourwebsite.com",
-      username: "yourwebsite.com",
+      url: "https://kamal-parihar.dev",
+      username: "kamal-parihar.dev",
       color: "text-emerald-500",
       hoverColor: "hover:bg-emerald-500 hover:text-white",
-      followers: "Live"
+      followers: "Portfolio"
+    },
+    {
+      icon: <Instagram className="h-6 w-6" />,
+      name: "Instagram",
+      url: "https://instagram.com/kamal.devops",
+      username: "@kamal.devops",
+      color: "text-pink-500",
+      hoverColor: "hover:bg-pink-500 hover:text-white",
+      followers: "1.8k"
     }
   ];
 
@@ -156,378 +167,479 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-16 px-4 min-h-screen">
-      <div className="container mx-auto max-w-7xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        
+        {/* Header Section */}
+        <ScrollReveal direction="down">
           <motion.div
-            className="flex items-center justify-center gap-3 mb-6"
-            whileHover={{ scale: 1.05 }}
+            className="text-center mb-16 sm:mb-20 lg:mb-24"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div
+            <motion.h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
               animate={{ 
-                rotate: [0, -10, 10, -5, 5, 0],
-                scale: [1, 1.1, 1, 1.05, 1]
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                repeatDelay: 2
-              }}
+              transition={{ duration: 6, repeat: Infinity }}
             >
-              <MessageCircle className="h-12 w-12 text-primary" />
+              Let's Connect
+            </motion.h1>
+            <motion.p
+              className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              Ready to transform your infrastructure? Let's discuss your next project and explore how we can 
+              build something amazing together. I'm always excited to tackle new challenges.
+            </motion.p>
+            
+            {/* Quick Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-3xl mx-auto"
+            >
+              {[
+                { icon: Clock, label: 'Response Time', value: '< 24h' },
+                { icon: MessageCircle, label: 'Availability', value: '24/7' },
+                { icon: Users, label: 'Projects', value: '20+' },
+                { icon: Heart, label: 'Success Rate', value: '100%' }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  className="bg-card border border-border rounded-xl p-4 hover:border-primary/50 transition-colors"
+                >
+                  <stat.icon className="h-6 w-6 text-primary mx-auto mb-2" />
+                  <div className="text-lg font-bold text-foreground">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              ))}
             </motion.div>
-            <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              LET'S CONNECT
-            </h1>
           </motion.div>
-          <motion.h2
-            className="text-2xl md:text-3xl font-bold mb-6"
-            animate={{ 
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] 
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-          >
-            Get In Touch
-          </motion.h2>
-          <motion.p
-            className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Have a project in mind? Want to collaborate? Or just want to say hello? 
-            I'd love to hear from you. Let's build something amazing together!
-          </motion.p>
-        </motion.div>
+        </ScrollReveal>
 
-        {/* Main Contact Section - 2 Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* LEFT SIDE - Contact Details */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="space-y-8"
-          >
-            {/* Contact Methods */}
-            <Card className="bg-card/90 backdrop-blur-sm border-2 border-border hover:border-primary/50 transition-all duration-500 shadow-xl">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <Phone className="h-6 w-6 text-primary" />
-                  Contact Details
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {contactMethods.map((method, index) => (
-                  <motion.a
-                    key={method.title}
-                    href={method.link}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * index, duration: 0.4 }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className={`block p-4 rounded-lg border-2 border-border ${method.hoverColor} transition-all duration-300 group`}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
+          
+          {/* LEFT SIDE - Contact Form */}
+          <ScrollReveal direction="left">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-8"
+            >
+              <div className="space-y-4">
+                <motion.h2
+                  className="text-3xl sm:text-4xl font-bold text-foreground"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  Send Me a Message
+                </motion.h2>
+                <motion.p
+                  className="text-muted-foreground text-lg leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Have a project in mind? I'd love to hear about it. Fill out the form below and I'll get back to you as soon as possible.
+                </motion.p>
+              </div>
+
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.div
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="space-y-6"
                   >
-                    <div className="flex items-center gap-4">
-                      <motion.div
-                        className={`p-3 rounded-full bg-background ${method.color} group-hover:scale-110 transition-transform duration-300`}
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {method.icon}
-                      </motion.div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg group-hover:translate-x-2 transition-transform duration-300">
-                          {method.title}
-                        </h3>
-                        <p className="text-muted-foreground group-hover:text-current transition-colors">
-                          {method.description}
-                        </p>
-                        <p className="font-mono text-sm text-primary group-hover:text-current transition-colors">
-                          {method.value}
-                        </p>
-                      </div>
-                      <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-current group-hover:translate-x-1 transition-all duration-300" />
-                    </div>
-                  </motion.a>
-                ))}
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* RIGHT SIDE - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <Card className="bg-card/90 backdrop-blur-sm border-2 border-border hover:border-primary/50 transition-all duration-500 shadow-xl">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-2xl">
-                  <Send className="h-6 w-6 text-primary" />
-                  Send Message
-                  <Badge className="ml-auto bg-green-500 text-white">
-                    <Clock className="h-3 w-3 mr-1" />
-                    24h Response
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <AnimatePresence mode="wait">
-                  {isSubmitted ? (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      className="text-center py-8"
-                    >
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 360, 0]
-                        }}
-                        transition={{ duration: 1 }}
-                        className="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center"
-                      >
-                        <CheckCircle className="h-8 w-8 text-white" />
-                      </motion.div>
-                      <h3 className="text-xl font-bold text-green-600 mb-2">Message Sent!</h3>
-                      <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
-                    </motion.div>
-                  ) : (
-                    <motion.form
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                    >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Card className="p-6 sm:p-8 border-2 border-border hover:border-primary/50 transition-colors bg-gradient-to-br from-card to-card/50">
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            className="space-y-2"
+                          >
+                            <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                              <User className="h-4 w-4 text-primary" />
+                              Full Name *
+                            </label>
+                            <Input
+                              type="text"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleInputChange}
+                              placeholder="John Doe"
+                              required
+                              className="border-2 focus:border-primary transition-colors"
+                            />
+                          </motion.div>
+                          
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7 }}
+                            className="space-y-2"
+                          >
+                            <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                              <Mail className="h-4 w-4 text-primary" />
+                              Email Address *
+                            </label>
+                            <Input
+                              type="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleInputChange}
+                              placeholder="john@example.com"
+                              required
+                              className="border-2 focus:border-primary transition-colors"
+                            />
+                          </motion.div>
+                        </div>
+                        
                         <motion.div
-                          whileFocus={{ scale: 1.02 }}
-                          transition={{ duration: 0.2 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.8 }}
+                          className="space-y-2"
                         >
-                          <label className="text-sm font-medium mb-2 flex items-center gap-2">
-                            <User className="h-4 w-4 text-primary" />
-                            Full Name *
+                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                            <FileText className="h-4 w-4 text-primary" />
+                            Subject *
                           </label>
                           <Input
                             type="text"
-                            name="name"
-                            value={formData.name}
+                            name="subject"
+                            value={formData.subject}
                             onChange={handleInputChange}
-                            placeholder="John Doe"
+                            placeholder="Project Discussion"
                             required
-                            className="border-2 border-border focus:border-primary transition-colors"
+                            className="border-2 focus:border-primary transition-colors"
                           />
                         </motion.div>
+                        
                         <motion.div
-                          whileFocus={{ scale: 1.02 }}
-                          transition={{ duration: 0.2 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.9 }}
+                          className="space-y-2"
                         >
-                          <label className="text-sm font-medium mb-2 flex items-center gap-2">
-                            <Mail className="h-4 w-4 text-primary" />
-                            Email Address *
+                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                            <MessageCircle className="h-4 w-4 text-primary" />
+                            Message *
                           </label>
-                          <Input
-                            type="email"
-                            name="email"
-                            value={formData.email}
+                          <Textarea
+                            name="message"
+                            value={formData.message}
                             onChange={handleInputChange}
-                            placeholder="john@example.com"
+                            placeholder="Tell me about your project requirements, timeline, and how I can help you achieve your goals..."
+                            rows={6}
                             required
-                            className="border-2 border-border focus:border-primary transition-colors"
+                            className="border-2 focus:border-primary transition-colors resize-none"
                           />
                         </motion.div>
-                      </div>
-                      <motion.div
-                        whileFocus={{ scale: 1.02 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <label className="text-sm font-medium mb-2 flex items-center gap-2">
-                          <FileText className="h-4 w-4 text-primary" />
-                          Subject *
-                        </label>
-                        <Input
-                          type="text"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          placeholder="Project Discussion / Collaboration / General Inquiry"
-                          required
-                          className="border-2 border-border focus:border-primary transition-colors"
-                        />
-                      </motion.div>
-                      <motion.div
-                        whileFocus={{ scale: 1.02 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <label className="text-sm font-medium mb-2 flex items-center gap-2">
-                          <MessageCircle className="h-4 w-4 text-primary" />
-                          Message *
-                        </label>
-                        <Textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          placeholder="Tell me about your project, ideas, or how we can collaborate..."
-                          rows={6}
-                          required
-                          className="border-2 border-border focus:border-primary transition-colors resize-none"
-                        />
-                      </motion.div>
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1.0 }}
+                          className="pt-4"
                         >
-                          {isSubmitting ? (
-                            <>
-                              <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                                className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"
-                              />
-                              Sending...
-                            </>
-                          ) : (
-                            <>
-                              Send Message
-                              <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                            </>
-                          )}
-                        </Button>
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="relative group"
+                          >
+                            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300" />
+                            <Button
+                              type="submit"
+                              disabled={isSubmitting}
+                              size="lg"
+                              className="relative w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-bold py-4 shadow-xl hover:shadow-2xl transition-all"
+                            >
+                              {isSubmitting ? (
+                                <motion.div
+                                  animate={{ rotate: 360 }}
+                                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                  className="flex items-center gap-2"
+                                >
+                                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
+                                  Sending...
+                                </motion.div>
+                              ) : (
+                                <div className="flex items-center gap-2">
+                                  <Send className="h-5 w-5" />
+                                  Send Message
+                                </div>
+                              )}
+                            </Button>
+                          </motion.div>
+                        </motion.div>
+                      </form>
+                    </Card>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="text-center space-y-6"
+                  >
+                    <Card className="p-8 border-2 border-green-500/50 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 0.6 }}
+                        className="flex justify-center mb-6"
+                      >
+                        <div className="p-4 bg-green-500 rounded-full">
+                          <CheckCircle className="h-8 w-8 text-white" />
+                        </div>
                       </motion.div>
-                    </motion.form>
-                  )}
-                </AnimatePresence>
-              </CardContent>
-            </Card>
-          </motion.div>
+                      <h3 className="text-2xl font-bold text-green-700 dark:text-green-300 mb-4">
+                        Message Sent Successfully!
+                      </h3>
+                      <p className="text-green-600 dark:text-green-400 leading-relaxed">
+                        Thank you for reaching out! I've received your message and will get back to you within 24 hours. 
+                        In the meantime, feel free to connect with me on social media.
+                      </p>
+                      <Button
+                        onClick={() => setIsSubmitted(false)}
+                        variant="outline"
+                        className="mt-6 border-green-500 text-green-600 hover:bg-green-500 hover:text-white"
+                      >
+                        Send Another Message
+                      </Button>
+                    </Card>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </ScrollReveal>
+
+          {/* RIGHT SIDE - Contact Methods & Social Links */}
+          <ScrollReveal direction="right">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="space-y-8"
+            >
+              {/* Contact Methods */}
+              <div className="space-y-6">
+                <motion.h2
+                  className="text-3xl sm:text-4xl font-bold text-foreground"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Get in Touch
+                </motion.h2>
+                
+                <div className="grid grid-cols-1 gap-4">
+                  {contactMethods.map((method, index) => (
+                    <motion.div
+                      key={method.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 + index * 0.1 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="group"
+                    >
+                      <RippleEffect>
+                        <Card className="p-6 border-2 border-border hover:border-primary/50 transition-all duration-300 cursor-pointer bg-gradient-to-br from-card to-card/50 group-hover:shadow-lg">
+                          <a href={method.link} className="flex items-start gap-4">
+                            <motion.div
+                              className={`p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 ${method.color} group-hover:scale-110 transition-transform`}
+                              whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                              transition={{ duration: 0.5 }}
+                            >
+                              {method.icon}
+                            </motion.div>
+                            <div className="flex-1 space-y-2">
+                              <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">
+                                {method.title}
+                              </h3>
+                              <p className="font-semibold text-primary">{method.value}</p>
+                              <p className="text-sm text-muted-foreground leading-relaxed">
+                                {method.description}
+                              </p>
+                            </div>
+                            <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </a>
+                        </Card>
+                      </RippleEffect>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Social Media Links */}
+              <div className="space-y-6">
+                <motion.h3
+                  className="text-2xl sm:text-3xl font-bold text-foreground"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 }}
+                >
+                  Connect on Social Media
+                </motion.h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.div
+                      key={social.name}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.1 + index * 0.1 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="group"
+                    >
+                      <RippleEffect>
+                        <Card className="p-4 border-2 border-border hover:border-primary/50 transition-all duration-300 cursor-pointer bg-gradient-to-br from-card to-card/50 group-hover:shadow-lg">
+                          <a 
+                            href={social.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3"
+                          >
+                            <motion.div
+                              className={`p-2 rounded-lg ${social.color} group-hover:scale-110 transition-transform`}
+                              whileHover={{ rotate: [0, -15, 15, -15, 0] }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              {social.icon}
+                            </motion.div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {social.name}
+                              </div>
+                              <div className="text-sm text-muted-foreground">{social.username}</div>
+                            </div>
+                            <div className="text-right">
+                              <Badge variant="secondary" className="text-xs">
+                                {social.followers}
+                              </Badge>
+                            </div>
+                          </a>
+                        </Card>
+                      </RippleEffect>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Fun Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 }}
+                className="space-y-4"
+              >
+                <Card className="p-6 border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-primary/5 text-center">
+                  <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="flex justify-center mb-4"
+                  >
+                    <Coffee className="h-8 w-8 text-accent" />
+                  </motion.div>
+                  <h4 className="font-bold text-foreground mb-2">Coffee Chat?</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Love discussing cloud architecture over coffee? I'm always up for a virtual coffee chat to talk about the latest in DevOps and cloud technologies!
+                  </p>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-4"
+                  >
+                    <Button variant="outline" size="sm" className="border-accent text-accent hover:bg-accent hover:text-white">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      Schedule Coffee Chat
+                    </Button>
+                  </motion.div>
+                </Card>
+              </motion.div>
+            </motion.div>
+          </ScrollReveal>
         </div>
 
-        {/* CENTER - Meeting Scheduler */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mb-16 flex justify-center"
-        >
-          <div className="w-full max-w-md">
-            <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-2 border-primary/20 shadow-xl">
-              <CardContent className="p-6 text-center">
+        {/* Call to Action */}
+        <ScrollReveal direction="up" delay={0.6}>
+          <motion.div
+            className="text-center mt-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <Card className="p-8 sm:p-12 bg-gradient-to-br from-primary/10 to-accent/10 border-2 border-primary/20 max-w-4xl mx-auto">
+              <motion.h3
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-foreground"
+                animate={{ 
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] 
+                }}
+                transition={{ duration: 6, repeat: Infinity }}
+              >
+                Ready to Start Your Project?
+              </motion.h3>
+              <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                Whether you need cloud migration, CI/CD implementation, or infrastructure automation, 
+                I'm here to help you achieve your goals. Let's build something amazing together!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.div
-                  animate={{ 
-                    scale: [1, 1.05, 1],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="mb-4"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative group"
                 >
-                  <Calendar className="h-12 w-12 mx-auto text-primary" />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300" />
+                  <Button
+                    asChild
+                    size="lg"
+                    className="relative bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-bold px-8 py-4 shadow-xl hover:shadow-2xl transition-all"
+                  >
+                    <a href="mailto:kamal.parihar@example.com">
+                      <Mail className="h-5 w-5 mr-2" />
+                      Email Me Directly
+                    </a>
+                  </Button>
                 </motion.div>
-                <h3 className="text-xl font-bold mb-2">Schedule a Meeting</h3>
-                <p className="text-muted-foreground mb-4 text-sm">
-                  Book a free 30-minute consultation call
-                </p>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
                     asChild
-                    className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold group"
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm px-8 py-4 font-semibold"
                   >
-                    <a href="https://calendly.com/yourusername" target="_blank" rel="noopener noreferrer">
-                      Book a Call
-                      <Calendar className="h-4 w-4 ml-2 group-hover:scale-110 transition-transform" />
+                    <a href="/portfolio">
+                      <Zap className="h-5 w-5 mr-2" />
+                      View My Work
                     </a>
                   </Button>
                 </motion.div>
-                <div className="flex items-center justify-center gap-2 mt-4">
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-2 h-2 bg-green-500 rounded-full"
-                  />
-                  <span className="text-xs text-green-600">Available for new projects</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-
-        {/* Social Media Grid Section - Connect With Me */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mb-16"
-        >
-          <Card className="bg-card/90 backdrop-blur-sm border-2 border-border hover:border-primary/50 transition-all duration-500 shadow-xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-2xl justify-center">
-                <Globe className="h-6 w-6 text-primary" />
-                Connect With Me
-                <Badge className="ml-2 bg-blue-500 text-white">
-                  <Users className="h-3 w-3 mr-1" />
-                  6.8k+ Followers
-                </Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 * index, duration: 0.4 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`p-4 rounded-lg border-2 border-border ${social.hoverColor} transition-all duration-300 group text-center`}
-                  >
-                    <motion.div
-                      className={`mx-auto mb-2 p-3 rounded-full bg-background ${social.color} group-hover:scale-110 transition-all duration-300`}
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {social.icon}
-                    </motion.div>
-                    <h3 className="font-semibold text-sm group-hover:text-current transition-colors">
-                      {social.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground group-hover:text-current transition-colors">
-                      {social.username}
-                    </p>
-                    {social.followers && (
-                      <Badge variant="outline" className="mt-1 text-xs group-hover:border-current transition-colors">
-                        {social.followers}
-                      </Badge>
-                    )}
-                  </motion.a>
-                ))}
               </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+            </Card>
+          </motion.div>
+        </ScrollReveal>
       </div>
-    </section>
+    </div>
   );
 };
 
